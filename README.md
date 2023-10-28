@@ -21,9 +21,10 @@ Choose the number :
 
 ### admin_command.sh
 ```console
-> ./admin_command.sh <MINECRAFT_COMMAND>
+> ./admin_command.sh
+Usage : ./admin_command.sh <MINECRAFT_COMMAND>
+Ref : https://minecraft.fandom.com/wiki/Commands
 ```
-
 
 ## ToDo
 

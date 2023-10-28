@@ -5,7 +5,7 @@ if `docker ps -a | grep -q minecraft`; then
     exit 1
 fi
 if [ $# -eq 0 ]; then
-    echo "No argument. Specify a command like ; > ./admin_command.sh /weather clear"
+    echo "Usage : ./admin_command.sh <MINECRAFT_COMMAND>"
     echo "Ref : https://minecraft.fandom.com/wiki/Commands"
     exit 1
 fi
