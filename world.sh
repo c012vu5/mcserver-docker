@@ -1,6 +1,11 @@
 #!/bin/sh
 
 function main () {
+    if [ ! -e .env ]; then
+        echo Run init.sh at first.
+        exit 1
+    fi
+
     . ./.env
     echo "1.Update server version  2.Initialize world  3.Update server version and Initialize world  4.Quit"
     read -p "Choose the number : " OPT

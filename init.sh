@@ -24,7 +24,7 @@ BACKUP_TIME=04:00:00
 MAX_BACKUP=10
 
 # Server version; see https://mcversions.net/
-SERVER_VER=1.20.2
+SERVER_VER=
 
 EOF
 
@@ -35,6 +35,7 @@ fi
 if [ -e server.jar ]; then
     echo Download server.jar has already been completed.
 else
-    . ./.env
-    wget -q `curl -s "https://mcversions.net/download/${SERVER_VER}" | grep -o 'https://piston-data.mojang.com/v1/objects/[^"]*/server.jar'`
+    LATEST_SERVER=`curl -s "https://mcversions.net/" | grep -oP 'Latest Release.*?\K\d+\.\d+\.\d+'`
+    echo Download latest server.jar : ${LATEST_SERVER}
+    wget -q `curl -s "https://mcversions.net/download/${LATEST_SERVER}" | grep -o 'https://piston-data.mojang.com/v1/objects/[^"]*/server.jar'`
 fi
