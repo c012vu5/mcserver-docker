@@ -25,9 +25,10 @@ MAX_BACKUP=10
 
 # Server version; see https://mcversions.net/
 SERVER_VER=
-
 EOF
 
+    LATEST_SERVER=`curl -s "https://mcversions.net/" | grep -oP 'Latest Release.*?\K\d+\.\d+\.\d+'`
+    sed -i "/SERVER_VER/s/$/${LATEST_SERVER}/" .env
     echo Initialize .env has been completed.
 fi
 echo -e "Edit it as you wish.\n"
