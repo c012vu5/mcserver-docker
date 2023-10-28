@@ -1,7 +1,12 @@
+# General ignored files
 *~
 .env
+
+# User's world data
 /Volume/backup/*
 !/Volume/backup/.gitkeep
 /Volume/current/*
 !/Volume/current/.gitkeep
+
+# Large binary files
 server.jar

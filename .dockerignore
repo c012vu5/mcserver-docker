@@ -1,10 +1,18 @@
-.env
+# General ignored files
+*~
 .git
 .gitignore
-admin_command.sh
-init.sh
 LICENSE
 README.md
+
+# Bind mount files
 server.jar
 Volume
+
+# Host side scripts
+init.sh
 world.sh
+admin_command.sh
+
+# Not mounted exceptionaly
+.env
