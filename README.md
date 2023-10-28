@@ -4,3 +4,13 @@
 Container to deploy minecraft server.
 
 ## Usage
+
+## ToDo
+
+- admin_command.sh
+- README.md
+- server.properties
+  - init.sh
+  - entrypoint.sh
+
+- rconの必要性

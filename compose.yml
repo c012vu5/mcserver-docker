@@ -1,0 +1,29 @@
+services:
+  minecraft:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: minecraft
+    hostname: minecraft
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "10"
+    network_mode: "host"
+    expose:
+      - "25565/tcp"
+    tmpfs: /tmp
+    volumes:
+      - type: bind
+        source: server.jar
+        target: /var/server.jar
+      - type: bind
+        source: ${CUR:-./Volume/current}
+        target: /mnt/current
+      - type: bind
+        source: ${BAK:-./Volume/backup}
+        target: /mnt/backup
+    environment:
+      TZ: Asia/Tokyo

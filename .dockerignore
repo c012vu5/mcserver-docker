@@ -1,1 +1,10 @@
+.env
 .git
+.gitignore
+admin_command.sh
+init.sh
+LICENSE
+README.md
+server.jar
+Volume
+world.sh

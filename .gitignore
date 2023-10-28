@@ -1,1 +1,7 @@
 *~
+.env
+/Volume/backup/*
+!/Volume/backup/.gitkeep
+/Volume/current/*
+!/Volume/current/.gitkeep
+server.jar

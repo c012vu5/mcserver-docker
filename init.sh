@@ -1,0 +1,40 @@
+#!/bin/sh
+
+if [ -e .env ]; then
+    echo Initialize .env has already been completed.
+else
+    cat > .env << EOF
+# By default, CUR=./Volume/current, BAK=./Volume/backup
+# Current world data location
+CUR=
+# Backup world data location
+BAK=
+
+# Server settings; see https://minecraft.fandom.com/ja/wiki/Server.properties
+RAM_ALLOC=4G
+DIFF=easy
+VIEW_DISTANCE=10
+MAX_HEIGHT=256
+
+# Server management settings; BACKUP_TIME format %H:%M:%S
+RCON_ENABLE=true
+RCON_PSWD=minecraft
+GRACE_TIME=60s
+BACKUP_TIME=04:00:00
+MAX_BACKUP=10
+
+# Server version; see https://mcversions.net/
+SERVER_VER=1.20.2
+
+EOF
+
+    echo Initialize .env has been completed.
+fi
+    echo -e "Edit it as you wish.\n"
+
+if [ -e server.jar ]; then
+    echo Download server.jar has already been completed.
+else
+    . ./.env
+    wget -q `curl -s "https://mcversions.net/download/${SERVER_VER}" | grep -o 'https://piston-data.mojang.com/v1/objects/[^"]*/server.jar'`
+fi
