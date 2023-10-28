@@ -30,7 +30,7 @@ EOF
 
     echo Initialize .env has been completed.
 fi
-    echo -e "Edit it as you wish.\n"
+echo -e "Edit it as you wish.\n"
 
 if [ -e server.jar ]; then
     echo Download server.jar has already been completed.
