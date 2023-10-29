@@ -62,6 +62,10 @@ function confirm () {
 
 function update_server () {
     rm -f ./server.jar
+    if [ -z ${SERVER_VER} ]; then
+        SERVER_VER=`curl -s "https://mcversions.net/" | grep -oP 'Latest Release.*?\K\d+\.\d+\.\d+'`
+    fi
+    echo Download server.jar : ${SERVER_VER}
     wget -q `curl -s "https://mcversions.net/download/${SERVER_VER}" | grep -o 'https://piston-data.mojang.com/v1/objects/[^"]*/server.jar'`
 }
 

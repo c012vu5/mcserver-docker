@@ -6,7 +6,8 @@ Container to deploy minecraft server.
 ## Usage
 
 ### init.sh
-Setup .env file and download latest minecraft server jar file.
+Setup .env file and download latest minecraft server jar file.  
+**Must be run**
 
 ```console
 > ./init.sh
