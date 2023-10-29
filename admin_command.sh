@@ -1,7 +1,7 @@
 #!/bin/sh
 
-if `docker ps -a | grep -q minecraft`; then
-    echo "Could't find the running container : minecraft"
+if `docker ps --format "table {{.Names}}" | grep -qv minecraft`; then
+    echo "Could not find the running container : minecraft"
     exit 1
 fi
 if [ $# -eq 0 ]; then

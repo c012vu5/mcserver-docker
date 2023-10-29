@@ -14,6 +14,9 @@ Setup .env file and download latest minecraft server jar file.
 ```
 
 ### world.sh
+**Choices 1 and 3**
+If a server version is specified in .env, download that version, otherwise download the latest version.
+
 ```console
 > ./world.sh
 1.Update server version  2.Initialize world  3.Update server version and Initialize world  4.Quit
