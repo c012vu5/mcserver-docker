@@ -49,7 +49,10 @@ function confirm () {
     echo -n "KEY : "
     read KEY
 
-    if [ ${LOCK} = ${KEY} ]; then
+    if [ -z ${KEY} ]; then
+        echo "Canceled."
+        exit 1
+    elif [ ${LOCK} = ${KEY} ]; then
         echo Confirmation succeeded.
         for CMD in "$@"; do
             ${CMD}
