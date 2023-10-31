@@ -5,6 +5,9 @@ Container to deploy minecraft server.
 
 ## Usage
 
+### Dependencies
+- `curl`, `docker`, `docker-compose`, `wget`
+
 ### init.sh
 Setup .env file and download latest minecraft server jar file.  
 **Must be run**

@@ -1,16 +1,21 @@
 #!/bin/sh
 
 function main () {
+    dependencies curl docker docker-compose wget
+
     if [ ! -e .env ]; then
         echo Run init.sh at first.
         exit 1
     fi
 
     . ./.env
-    echo "1.Update server version  2.Initialize world  3.Update server version and Initialize world  4.Quit"
+    echo "1.Update server version  2.Initialize world  3.Update server version and Initialize world  4.Quit (default)"
     read -p "Choose the number : " OPT
     echo
 
+    if [ -z ${OPT} ]; then
+        OPT=4
+    fi
     case ${OPT} in
         1 )
             echo Update server version.
@@ -74,6 +79,19 @@ function update_server () {
 
 function init_world () {
     rm -rf ${CUR}/world
+}
+
+function dependencies () {
+    local MISSING=()
+    for CMD in $@; do
+        if ! type ${CMD} &> /dev/null; then
+            MISSING+=(${CMD})
+        fi
+    done
+    if [ ${#MISSING[@]} -ne 0 ]; then
+        echo -e "Dependencies error : \e[0;31m${MISSING[@]}\e[0;39m not found."
+        exit 1
+    fi
 }
 
 main
