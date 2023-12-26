@@ -16,3 +16,4 @@ admin_command.sh
 
 # Not mounted exceptionaly
 .env
+.env.template

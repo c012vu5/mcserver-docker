@@ -1,35 +1,12 @@
 #!/bin/sh
 
-function main () {
+main () {
     dependencies curl wget
 
     if [ -e .env ]; then
         echo Initialize .env has already been completed.
     else
-        cat > .env << EOF
-# By default, CUR=./Volume/current, BAK=./Volume/backup
-# Current world data location
-CUR=
-# Backup world data location
-BAK=
-
-# Server settings; see https://minecraft.fandom.com/ja/wiki/Server.properties
-RAM_ALLOC=4G
-DIFF=easy
-VIEW_DISTANCE=10
-MAX_HEIGHT=256
-
-# Server management settings; BACKUP_TIME format %H:%M:%S
-RCON_ENABLE=true
-RCON_PSWD=minecraft
-GRACE_TIME=60s
-BACKUP_TIME=04:00:00
-MAX_BACKUP=10
-
-# Server version; see https://mcversions.net/
-SERVER_VER=
-EOF
-
+        cp .env.template .env
         echo Initialize .env has been completed.
     fi
     echo -e "Edit it as you wish.\n"
@@ -43,17 +20,17 @@ EOF
     fi
 }
 
-function dependencies () {
-    local MISSING=()
-    for CMD in $@; do
-        if ! type ${CMD} &> /dev/null; then
-            MISSING+=(${CMD})
+dependencies () {
+    MISSING=""
+    for CMD in "$@"; do
+        if ! type "${CMD}" > /dev/null 2>&1; then
+            MISSING="${MISSING}"\ "${CMD}"
         fi
     done
-    if [ ${#MISSING[@]} -ne 0 ]; then
-        echo -e "Dependencies error : \e[0;31m${MISSING[@]}\e[0;39m not found."
+    if [ -n "${MISSING}"  ]; then
+        printf "Dependencies error :\e[0;31m%s\e[0;39m not found.\n" "${MISSING}"
         exit 1
     fi
 }
 
-main
+main "$@"
