@@ -40,5 +40,10 @@ Ref : https://minecraft.fandom.com/wiki/Commands
 - server.properties
   - init.sh
   - entrypoint.sh
+- POSIX compliant
+  - admin_command.sh
+  - entrypoint.sh
+  - init.sh
+  - world.sh
 
 - rconの必要性

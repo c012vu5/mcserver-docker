@@ -9,14 +9,14 @@ main () {
         cp .env.template .env
         echo Initialize .env has been completed.
     fi
-    echo -e "Edit it as you wish.\n"
+    echo "Edit it as you wish."
 
     if [ -e server.jar ]; then
         echo Download server.jar has already been completed.
     else
-        LATEST_SERVER=`curl -s "https://mcversions.net/" | grep -oP 'Latest Release.*?\K\d+\.\d+\.\d+'`
-        echo Download latest server.jar : ${LATEST_SERVER}
-        wget -q `curl -s "https://mcversions.net/download/${LATEST_SERVER}" | grep -o 'https://piston-data.mojang.com/v1/objects/[^"]*/server.jar'`
+        LATEST_SERVER=$(curl -s "https://mcversions.net/" | grep -oP 'Latest Release.*?\K\d+\.\d+\.\d+')
+        printf "Download latest server.jar : %s" "${LATEST_SERVER}"
+        wget -q "$(curl -s "https://mcversions.net/download/${LATEST_SERVER}" | grep -o 'https://piston-data.mojang.com/v1/objects/[^"]*/server.jar')"
     fi
 }
 

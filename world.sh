@@ -10,10 +10,11 @@ main () {
 
     . ./.env
     echo "1.Update server version  2.Initialize world  3.Update server version and Initialize world  4.Quit (default)"
-    read -p "Choose the number : " OPT
+    printf "Choose the number : "
+    read -r OPT
     echo
 
-    if [ -z ${OPT} ]; then
+    if [ -z "${OPT}" ]; then
         OPT=4
     fi
     case ${OPT} in
@@ -49,13 +50,13 @@ main () {
 
 confirm () {
     LOCK=$(tr -dc 'a-zA-Z0-9' < /dev/urandom | fold -w 8 | head -1 | sort | uniq)
-    printf "\e[0;31mEnter this password to continue.\e[0;39m"
-    printf "PASSWORD : \e[4;32m%s\e[0;39m" "${LOCK}"
+    printf "\e[0;31mEnter this password to continue.\e[0;39m\n"
+    printf "PASSWORD : \e[4;32m%s\e[0;39m\n" "${LOCK}"
     printf "KEY : "
     read -r KEY
 
     if [ -z "${KEY}" ]; then
-        echo "Canceled."
+        echo Canceled.
         exit 1
     elif [ "${LOCK}" = "${KEY}" ]; then
         echo Confirmation succeeded.
@@ -70,15 +71,15 @@ confirm () {
 
 update_server () {
     rm -f ./server.jar
-    if [ -z ${SERVER_VER} ]; then
-        SERVER_VER=`curl -s "https://mcversions.net/" | grep -oP 'Latest Release.*?\K\d+\.\d+\.\d+'`
+    if [ -z "${SERVER_VER}" ]; then
+        SERVER_VER="$(curl -s "https://mcversions.net/" | grep -oP 'Latest Release.*?\K\d+\.\d+\.\d+')"
     fi
-    echo Download server.jar : ${SERVER_VER}
-    wget -q `curl -s "https://mcversions.net/download/${SERVER_VER}" | grep -o 'https://piston-data.mojang.com/v1/objects/[^"]*/server.jar'`
+    printf "Download server.jar : %s\n" "${SERVER_VER}"
+    wget -q "$(curl -s "https://mcversions.net/download/${SERVER_VER}" | grep -o 'https://piston-data.mojang.com/v1/objects/[^"]*/server.jar')"
 }
 
 init_world () {
-    rm -rf ${CUR}/world
+    rm -rf "${CUR}"/world
 }
 
 dependencies () {
