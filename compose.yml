@@ -17,6 +17,10 @@ services:
     tmpfs: /tmp
     volumes:
       - type: bind
+        source: /etc/localtime
+        target: /etc/localtime
+        read_only: true
+      - type: bind
         source: server.jar
         target: /var/server.jar
       - type: bind
@@ -25,5 +29,3 @@ services:
       - type: bind
         source: ${BAK:-./Volume/backup}
         target: /mnt/backup
-    environment:
-      TZ: Asia/Tokyo
