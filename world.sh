@@ -49,6 +49,7 @@ main () {
 }
 
 confirm () {
+    printf "\e[0;31mThis operation may cause destructive changes.\e[0;39m\n"
     LOCK=$(tr -dc 'a-zA-Z0-9' < /dev/urandom | fold -w 8 | head -1 | sort | uniq)
     printf "\e[0;31mEnter this password to continue.\e[0;39m\n"
     printf "PASSWORD : \e[4;32m%s\e[0;39m\n" "${LOCK}"
